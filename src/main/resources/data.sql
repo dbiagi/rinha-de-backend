@@ -1,0 +1,20 @@
+CREATE TABLE account (
+    id SERIAL PRIMARY KEY,
+    limit BIGINT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE transaction (
+    id SERIAL PRIMARY KEY,
+    amount BIGINT NOT NULL,
+    type VARCHAR(1) NOT NULL,
+    account_id INT NOT NULL,
+    description VARCHAR(10),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO account (limit) VALUES (100000);
+INSERT INTO account (limit) VALUES (80000);
+INSERT INTO account (limit) VALUES (1000000);
+INSERT INTO account (limit) VALUES (10000000);
+INSERT INTO account (limit) VALUES (500000);
