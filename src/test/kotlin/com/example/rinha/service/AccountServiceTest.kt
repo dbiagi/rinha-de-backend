@@ -4,6 +4,7 @@ import com.example.rinha.domain.exception.NotFoundException
 import com.example.rinha.model.Account
 import com.example.rinha.repository.AccountRepository
 import org.junit.jupiter.api.Test
+import org.mockito.kotlin.atLeastOnce
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
@@ -39,7 +40,7 @@ class AccountServiceTest {
         val id = 1
         val account = Account(id, 100, LocalDateTime.now())
         whenever(accountRepository.findById(id)).thenReturn(Mono.just(account))
-        verify(accountCache).containsKey(id)
+        verify(accountCache, atLeastOnce()).containsKey(id)
 
         StepVerifier.create(accountService.getAccount(id))
             .expectNext(account)
