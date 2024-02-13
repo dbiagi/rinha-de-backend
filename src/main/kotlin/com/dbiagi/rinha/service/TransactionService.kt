@@ -3,6 +3,7 @@ package com.dbiagi.rinha.service
 import com.dbiagi.rinha.domain.TransactionRequest
 import com.dbiagi.rinha.domain.TransactionType
 import com.dbiagi.rinha.domain.exception.NotEnoughBalance
+import com.dbiagi.rinha.domain.exception.NotFoundException
 import com.dbiagi.rinha.model.Account
 import com.dbiagi.rinha.model.Transaction
 import com.dbiagi.rinha.repository.TransactionRepository
