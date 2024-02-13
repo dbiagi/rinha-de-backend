@@ -31,7 +31,6 @@ class TransactionServiceTest {
         val request = TransactionRequest(100, TransactionType.CREDIT, "Credit transaction")
         val account = Account(id = accountId, limit = 1000, createdAt = LocalDateTime.now())
 
-        // when
         whenever(accountService.getAccount(accountId)).thenReturn(Mono.just(account))
         whenever(balanceService.getBalance(accountId)).thenReturn(Mono.just(0))
         whenever(transactionRepository.save(any())).thenReturn(Mono.empty())
@@ -50,7 +49,6 @@ class TransactionServiceTest {
         val request = TransactionRequest(1001, TransactionType.DEBIT, "Debit transaction")
         val account = Account(id = accountId, limit = 1000, createdAt = LocalDateTime.now())
 
-        // when
         whenever(accountService.getAccount(accountId)).thenReturn(Mono.just(account))
         whenever(balanceService.getBalance(accountId)).thenReturn(Mono.just(0))
 
@@ -69,7 +67,6 @@ class TransactionServiceTest {
         val request = TransactionRequest(1000, TransactionType.DEBIT, "Debit transaction")
         val account = Account(id = accountId, limit = 1000, createdAt = LocalDateTime.now())
 
-        // when
         whenever(accountService.getAccount(accountId)).thenReturn(Mono.just(account))
         whenever(balanceService.getBalance(accountId)).thenReturn(Mono.just(0))
         whenever(transactionRepository.save(any())).thenReturn(Mono.empty())
