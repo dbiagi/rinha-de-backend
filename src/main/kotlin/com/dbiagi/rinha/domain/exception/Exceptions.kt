@@ -1,4 +1,4 @@
-package com.example.rinha.domain.exception
+package com.dbiagi.rinha.domain.exception
 
 class NotEnoughBalance(
     message: String = "Not enough balance for this account."

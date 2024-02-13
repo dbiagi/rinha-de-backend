@@ -1,4 +1,4 @@
-package com.example.rinha.domain.exception
+package com.dbiagi.rinha.domain.exception
 
 open class NotFoundException : BaseException(errors = listOf(AppError("not_found", "Not found")))
 open class BadRequestException(errors: List<AppError> = emptyList()) : BaseException(errors)

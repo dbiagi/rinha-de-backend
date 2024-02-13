@@ -1,6 +1,6 @@
-package com.example.rinha
+package com.dbiagi.rinha
 
-import com.example.rinha.model.Account
+import com.dbiagi.rinha.model.Account
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component
 

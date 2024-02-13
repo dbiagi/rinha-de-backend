@@ -1,4 +1,4 @@
-package com.example.rinha.domain
+package com.dbiagi.rinha.domain
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

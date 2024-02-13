@@ -1,4 +1,4 @@
-package com.example.rinha.controller
+package com.dbiagi.rinha.controller
 
 import org.springframework.web.bind.annotation.RestController
 

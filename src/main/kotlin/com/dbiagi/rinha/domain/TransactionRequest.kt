@@ -1,4 +1,4 @@
-package com.example.rinha.domain
+package com.dbiagi.rinha.domain
 
 data class TransactionRequest(
     val amount: Int,

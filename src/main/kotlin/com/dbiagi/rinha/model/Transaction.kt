@@ -1,6 +1,6 @@
-package com.example.rinha.model
+package com.dbiagi.rinha.model
 
-import com.example.rinha.domain.TransactionType
+import com.dbiagi.rinha.domain.TransactionType
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Column
 import java.time.LocalDateTime

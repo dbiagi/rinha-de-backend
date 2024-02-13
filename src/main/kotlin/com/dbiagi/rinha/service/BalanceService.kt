@@ -1,7 +1,7 @@
-package com.example.rinha.service
+package com.dbiagi.rinha.service
 
-import com.example.rinha.domain.TransactionType
-import com.example.rinha.repository.TransactionRepository
+import com.dbiagi.rinha.domain.TransactionType
+import com.dbiagi.rinha.repository.TransactionRepository
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 

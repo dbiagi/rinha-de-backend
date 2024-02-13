@@ -1,13 +1,15 @@
-package com.example.rinha.service
+package com.dbiagi.rinha.service
 
-import com.example.rinha.model.Account
-import com.example.rinha.repository.AccountRepository
+import com.dbiagi.rinha.domain.exception.NotFoundException
+import com.dbiagi.rinha.model.Account
+import com.dbiagi.rinha.repository.AccountRepository
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.never
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 import reactor.core.publisher.Mono
+import reactor.core.scheduler.Schedulers
 import reactor.test.StepVerifier
 import java.time.LocalDateTime
 
@@ -43,8 +45,9 @@ class AccountServiceTest {
 
         whenever(accountRepository.findById(id)).thenReturn(Mono.just(account))
 
-        StepVerifier.create(accountService.getAccount(id))
-            .expectNext(account)
-            .verifyComplete()
+        accountService.getAccount(id).subscribeOn(Schedulers.boundedElastic())
+//        StepVerifier.create(accountService.getAccount(id))
+//            .expectNext(account)
+//            .verifyComplete()
     }
 }

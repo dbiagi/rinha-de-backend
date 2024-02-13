@@ -1,10 +1,11 @@
-package com.example.rinha.controller
+package com.dbiagi.rinha.controller
 
-import com.example.rinha.domain.exception.BadRequestException
-import com.example.rinha.domain.exception.BaseException
-import com.example.rinha.domain.exception.ErrorResponse
-import com.example.rinha.domain.exception.NotFoundException
-import com.example.rinha.domain.exception.UnprocessableException
+import com.dbiagi.rinha.domain.exception.BadRequestException
+import com.dbiagi.rinha.domain.exception.BaseException
+import com.dbiagi.rinha.domain.exception.ErrorResponse
+import com.dbiagi.rinha.domain.exception.NotFoundException
+import com.dbiagi.rinha.domain.exception.UnprocessableException
+import com.dbiagi.rinha.domain.exception.internalError
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice

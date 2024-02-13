@@ -1,4 +1,4 @@
-package com.example.rinha
+package com.dbiagi.rinha
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

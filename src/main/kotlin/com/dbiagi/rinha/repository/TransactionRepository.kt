@@ -1,6 +1,6 @@
-package com.example.rinha.repository
+package com.dbiagi.rinha.repository
 
-import com.example.rinha.model.Transaction
+import com.dbiagi.rinha.model.Transaction
 import org.springframework.data.r2dbc.repository.R2dbcRepository
 import reactor.core.publisher.Flux
 

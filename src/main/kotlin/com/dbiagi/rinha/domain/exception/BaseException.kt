@@ -1,4 +1,4 @@
-package com.example.rinha.domain.exception
+package com.dbiagi.rinha.domain.exception
 
 open class BaseException(
     val errors: List<AppError> = emptyList(),

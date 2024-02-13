@@ -1,7 +1,7 @@
-package com.example.rinha.controller
+package com.dbiagi.rinha.controller
 
-import com.example.rinha.domain.TransactionRequest
-import com.example.rinha.service.TransactionService
+import com.dbiagi.rinha.domain.TransactionRequest
+import com.dbiagi.rinha.service.TransactionService
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping

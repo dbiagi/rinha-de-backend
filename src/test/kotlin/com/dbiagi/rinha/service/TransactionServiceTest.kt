@@ -1,10 +1,10 @@
-package com.example.rinha.service
+package com.dbiagi.rinha.service
 
-import com.example.rinha.domain.TransactionRequest
-import com.example.rinha.domain.TransactionType
-import com.example.rinha.domain.exception.NotEnoughBalance
-import com.example.rinha.model.Account
-import com.example.rinha.repository.TransactionRepository
+import com.dbiagi.rinha.domain.TransactionRequest
+import com.dbiagi.rinha.domain.TransactionType
+import com.dbiagi.rinha.domain.exception.NotEnoughBalance
+import com.dbiagi.rinha.model.Account
+import com.dbiagi.rinha.repository.TransactionRepository
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.any
 import org.mockito.kotlin.atLeastOnce
