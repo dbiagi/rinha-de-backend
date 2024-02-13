@@ -8,7 +8,7 @@ data class Account (
     @Id
     val id: Int,
 
-    @Column("credit_limit")
+    @Column("debit_limit")
     val limit: Int,
 
     val createdAt: LocalDateTime,
