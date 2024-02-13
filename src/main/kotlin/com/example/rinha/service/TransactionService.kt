@@ -3,11 +3,13 @@ package com.example.rinha.service
 import com.example.rinha.domain.TransactionRequest
 import com.example.rinha.domain.TransactionType
 import com.example.rinha.domain.exception.NotEnoughBalance
+import com.example.rinha.domain.exception.NotFoundException
 import com.example.rinha.model.Account
 import com.example.rinha.model.Transaction
 import com.example.rinha.repository.TransactionRepository
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
+import reactor.kotlin.core.publisher.switchIfEmpty
 
 @Service
 class TransactionService(
@@ -18,6 +20,8 @@ class TransactionService(
     fun create(accountId: Int, request: TransactionRequest): Mono<Void> =
         Mono.defer {
             accountService.getAccount(accountId)
+        }.switchIfEmpty {
+            Mono.error(NotFoundException())
         }.flatMap { account: Account ->
             hasAvailableBalance(account, request)
         }.flatMap { account ->
@@ -29,10 +33,11 @@ class TransactionService(
     }
 
     private fun hasAvailableBalance(account: Account, requestedTransaction: TransactionRequest): Mono<Account> {
-        val hasAvailableLimit: (TransactionRequest, Int) -> Boolean = { request: TransactionRequest, currentBalance: Int ->
-            if (request.type == TransactionType.DEBIT) (currentBalance - request.amount) >= -account.limit
-            else true
-        }
+        val hasAvailableLimit: (TransactionRequest, Int) -> Boolean =
+            { request: TransactionRequest, currentBalance: Int ->
+                if (request.type == TransactionType.DEBIT) (currentBalance - request.amount) >= -account.limit
+                else true
+            }
 
         return balanceService.getBalance(account.id)
             .flatMap { currentBalance ->

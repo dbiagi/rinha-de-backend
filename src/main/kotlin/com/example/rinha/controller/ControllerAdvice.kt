@@ -5,7 +5,6 @@ import com.example.rinha.domain.exception.BaseException
 import com.example.rinha.domain.exception.ErrorResponse
 import com.example.rinha.domain.exception.NotFoundException
 import com.example.rinha.domain.exception.UnprocessableException
-import com.example.rinha.domain.exception.internalError
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -16,12 +15,10 @@ class ControllerAdvice {
     val logger = mu.KotlinLogging.logger {}
 
     @ExceptionHandler(BaseException::class)
-    fun handleException(exception: Exception): ResponseEntity<ErrorResponse> {
-        logger.error("Unhandled exception!", exception)
-        internalError().errors
+    fun handleException(exception: BaseException): ResponseEntity<ErrorResponse> {
         return ResponseEntity
-            .internalServerError()
-            .body(ErrorResponse(errors = emptyList()))
+            .status(toStatus(exception))
+            .body(ErrorResponse(errors = exception.errors))
     }
 
     @ExceptionHandler(NotFoundException::class)
