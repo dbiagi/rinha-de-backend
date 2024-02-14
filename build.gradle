@@ -8,7 +8,7 @@ plugins {
 	id 'org.jetbrains.kotlin.plugin.jpa' version '1.9.22'
 }
 
-group = 'com.example'
+group = 'com.dbiagi'
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -17,6 +17,10 @@ java {
 
 repositories {
 	mavenCentral()
+}
+
+tasks.named('jar') {
+	enabled = false
 }
 
 dependencies {
