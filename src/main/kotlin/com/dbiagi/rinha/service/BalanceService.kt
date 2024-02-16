@@ -2,10 +2,9 @@ package com.dbiagi.rinha.service
 
 import com.dbiagi.rinha.domain.Balance
 import com.dbiagi.rinha.domain.DetailedBalance
-import com.dbiagi.rinha.domain.TransactionResponse
+import com.dbiagi.rinha.domain.TransactionBalanceResponse
 import com.dbiagi.rinha.domain.TransactionType
 import com.dbiagi.rinha.domain.exception.NotFoundException
-import com.dbiagi.rinha.model.Transaction
 import com.dbiagi.rinha.repository.TransactionRepository
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
@@ -34,15 +33,15 @@ class BalanceService(
             }
         }
 
-    private fun calculateTotal(transactions: List<TransactionResponse>): Int = transactions.sumOf { t ->
+    private fun calculateTotal(transactions: List<TransactionBalanceResponse>): Int = transactions.sumOf { t ->
         when (t.type) {
             TransactionType.CREDIT -> t.amount
             TransactionType.DEBIT -> -t.amount
         }
     }
 
-    private fun getTransactions(accountId: Int): Mono<List<TransactionResponse>> =
+    private fun getTransactions(accountId: Int): Mono<List<TransactionBalanceResponse>> =
         transactionRepository.findAllByAccountId(accountId)
-            .map { TransactionResponse(it.amount, it.type, it.description, it.createdAt) }
+            .map { TransactionBalanceResponse(it.amount, it.type, it.description, it.createdAt) }
             .collectList()
 }

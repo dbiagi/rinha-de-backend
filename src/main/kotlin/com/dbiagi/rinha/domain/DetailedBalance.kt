@@ -6,7 +6,7 @@ data class DetailedBalance(
     @JsonProperty("saldo")
     val balance: Balance,
     @JsonProperty("ultimas_transacoes")
-    val lastTransactions: List<TransactionResponse>,
+    val lastTransactions: List<TransactionBalanceResponse>,
 )
 
 

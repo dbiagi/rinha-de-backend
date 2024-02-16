@@ -1,9 +1,11 @@
 package com.dbiagi.rinha.service
 
 import com.dbiagi.rinha.domain.TransactionRequest
+import com.dbiagi.rinha.domain.TransactionResponse
 import com.dbiagi.rinha.domain.TransactionType
 import com.dbiagi.rinha.domain.exception.NotEnoughBalance
 import com.dbiagi.rinha.model.Account
+import com.dbiagi.rinha.model.Transaction
 import com.dbiagi.rinha.repository.TransactionRepository
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.any
@@ -28,15 +30,25 @@ class TransactionServiceTest {
     fun `given a credit transaction request should create a transaction`() {
         // given
         val accountId = 1
-        val request = TransactionRequest(100, TransactionType.CREDIT, "Credit transaction")
+        val amount = 100
+        val request = TransactionRequest(amount, TransactionType.CREDIT, "Credit transaction")
         val account = Account(id = accountId, limit = 1000, createdAt = LocalDateTime.now())
+        val transaction = Transaction(
+            accountId = accountId,
+            amount = amount,
+            type = TransactionType.CREDIT,
+            description = "Credit transaction"
+        )
 
         whenever(accountService.getAccount(accountId)).thenReturn(Mono.just(account))
         whenever(balanceService.getBalance(accountId)).thenReturn(Mono.just(0))
-        whenever(transactionRepository.save(any())).thenReturn(Mono.empty())
+        whenever(transactionRepository.save(any())).thenReturn(Mono.just(transaction))
 
         // then
         StepVerifier.create(transactionService.create(accountId, request))
+            .expectNextMatches { result: TransactionResponse ->
+                result.limit == account.limit && result.balance == request.amount
+            }
             .verifyComplete()
 
         verify(transactionRepository, atLeastOnce()).save(any())

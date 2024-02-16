@@ -1,18 +1,11 @@
 package com.dbiagi.rinha.domain
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import java.time.LocalDateTime
 
 data class TransactionResponse (
-    @JsonProperty("valor")
-    val amount: Int,
+    @JsonProperty("limite")
+    val limit: Int,
 
-    @JsonProperty("tipo")
-    val type: TransactionType,
-
-    @JsonProperty("descricao")
-    val desciption: String,
-
-    @JsonProperty("realizada_em")
-    val createdAt: LocalDateTime
+    @JsonProperty("saldo")
+    val balance: Int
 )

@@ -1,6 +1,7 @@
 package com.dbiagi.rinha.controller
 
 import com.dbiagi.rinha.domain.TransactionRequest
+import com.dbiagi.rinha.domain.TransactionResponse
 import com.dbiagi.rinha.service.TransactionService
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.PathVariable
@@ -16,7 +17,7 @@ class TransactionsController(
     val logger = LoggerFactory.getLogger(TransactionsController::class.java)
 
     @PostMapping("/clientes/{accountId}/transacoes")
-    fun create(@PathVariable("accountId") accountId: Int, @RequestBody transactionRequest: TransactionRequest): Mono<Void> {
+    fun create(@PathVariable("accountId") accountId: Int, @RequestBody transactionRequest: TransactionRequest): Mono<TransactionResponse> {
         logger.info("Creating transaction for account $accountId, request=$transactionRequest")
         return trasactionService.create(accountId, transactionRequest)
     }
