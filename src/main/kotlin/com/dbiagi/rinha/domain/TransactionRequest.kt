@@ -1,7 +1,14 @@
 package com.dbiagi.rinha.domain
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 data class TransactionRequest(
+    @JsonProperty("valor")
     val amount: Int,
+
+    @JsonProperty("tipo")
     val type: TransactionType,
-    val description: String
+
+    @JsonProperty("descricao")
+    val description: String,
 )

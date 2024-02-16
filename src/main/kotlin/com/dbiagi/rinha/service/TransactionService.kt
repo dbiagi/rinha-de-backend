@@ -62,6 +62,4 @@ class TransactionService(
         type = request.type,
         description = request.description
     )
-
-    data class AccountWithCurrentBalance(val account: Account, val currentBalance: Int)
 }
