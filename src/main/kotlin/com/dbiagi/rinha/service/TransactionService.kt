@@ -27,13 +27,16 @@ class TransactionService(
         }.flatMap { account: Account ->
             getAvailableBalance(account, request).zipWith(Mono.just(account))
         }.map { t: Tuple2<Int, Account> ->
-            val currentBalanceAfterTransaction = when (request.type) {
-                TransactionType.DEBIT -> t.t1 - request.amount
-                TransactionType.CREDIT -> t.t1 + request.amount
+            val account: Account = t.t2
+            val currentBalance: Int = t.t1
+
+            val currentBalanceAfterTransaction: Int = when (request.type) {
+                TransactionType.DEBIT -> currentBalance - request.amount
+                TransactionType.CREDIT -> currentBalance + request.amount
             }
 
-            transactionRepository.save(mapToTransaction(t.t2, request)).map {
-                TransactionResponse(t.t2.limit, currentBalanceAfterTransaction)
+            transactionRepository.save(mapToTransaction(account, request)).map {
+                TransactionResponse(account.limit, currentBalanceAfterTransaction)
             }
         }.flatMap { it }
 
